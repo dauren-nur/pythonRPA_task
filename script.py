@@ -40,8 +40,12 @@ if __name__ == "__main__":
 
     # get current working directory
     root = os.getcwd()
-
-    glob = pathlib.Path(".").glob('**/*')
+    p = pathlib.Path(".")
+    
+    
+    #ignoring .git folder
+    glob = [path for path in p.glob('**/*') if not any(part.startswith('.git') for part in path.parts)]
+    
     files = []
 
     for file in glob:
@@ -55,4 +59,5 @@ if __name__ == "__main__":
     df.index += 1
 
     # saving to a file
-    df.to_excel("results.xlsx", header=False)
+    with pd.ExcelWriter("results.xlsx", engine="openpyxl", mode="a", if_sheet_exists="replace") as writer:
+        df.to_excel(writer, 'results', header=False)
