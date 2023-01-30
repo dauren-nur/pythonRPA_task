@@ -59,5 +59,5 @@ if __name__ == "__main__":
     df.index += 1
 
     # saving to a file
-    with pd.ExcelWriter("results.xlsx", engine="openpyxl", mode="a", if_sheet_exists="replace") as writer:
+    with pd.ExcelWriter("results.xlsx", engine="openpyxl", mode="w") as writer:
         df.to_excel(writer, 'results', header=False)
