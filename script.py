@@ -43,7 +43,7 @@ if __name__ == "__main__":
     glob = pathlib.Path(".").glob('**/*')
     
     
-    # comment if the script needs to ignore .git folder
+    # comment if the script should traverse .git folder
     glob = [path for path in glob if not any(part.startswith('.git') for part in path.parts)]
     
     files = []
