@@ -40,11 +40,11 @@ if __name__ == "__main__":
 
     # get current working directory
     root = os.getcwd()
-    p = pathlib.Path(".")
+    glob = pathlib.Path(".").glob('**/*')
     
     
-    #ignoring .git folder
-    glob = [path for path in p.glob('**/*') if not any(part.startswith('.git') for part in path.parts)]
+    # comment if the script needs to ignore .git folder
+    glob = [path for path in glob if not any(part.startswith('.git') for part in path.parts)]
     
     files = []
 
